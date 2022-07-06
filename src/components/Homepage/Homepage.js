@@ -12,7 +12,9 @@ export default function Homepage() {
     const [humidity, sethumidity] = useState([]);
     const [icon, seticon] = useState([]);
     const [img, setimg] = useState([]);
+    const [place, setplace] = useState([]);
     let d = new Date();
+    let timex = d.getHours();
     var time = d.getHours() + ":" + d.getMinutes() ;
     console.log(time);
 
@@ -25,9 +27,11 @@ export default function Homepage() {
 
 
     const fetchData = async () => {
-
+        
         var city = document.getElementById('city').value;
-        console.log(city)
+        
+        
+        console.log(city);
 
 
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=418980fd544d800ef66538c1f8140ef6`);
@@ -56,7 +60,7 @@ export default function Homepage() {
 
 
         <div className="Homepage_container">
-            <div className="main">
+            <div style={{backgroundImage:timex < 17 ?  "url('https://s3.envato.com/files/9afcdb91-eea8-4b3a-8571-5b4bfc59bdc9/inline_image_preview.jpg')" : "url('https://wallpaperaccess.com/full/1363028.jpg')" }} className="main">
                 <h1 >Weather App</h1>
                 <div className="display">
                     <div className="top">
@@ -66,7 +70,7 @@ export default function Homepage() {
                     <div className="middle-temp">
                         <p>{Math.floor(dat)} C</p>
                         <div>
-                            <span>cloudy</span><br />
+                            <span>{climate}</span><br />
                             <span>feels like {Math.floor(feel)}</span>
                         </div>
                         <div>
