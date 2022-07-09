@@ -37,6 +37,10 @@
     margin: 0px;
     font-size: 30px;
 }
+.display h2 img{
+    margin-left: 20px;
+    height: 17px;
+}
 .top{
     display: flex;
     flex-direction: row;
