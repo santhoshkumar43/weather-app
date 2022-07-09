@@ -1,30 +1,19 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
 import "./App.css";
-import Aaaa from "./Aaaa";
+import Footer from "./components/Footer/Footer";
 import Homepage from "./components/Homepage/Homepage";
+import Navbar from "./components/Navbar/Navbar";
 
 
 function App() {
-
-  // useEffect(() => {
-  //   fetch("https://jsonplaceholder.typicode.com/users")
-  //     .then((response) => response.json())
-  //     .then((data) => setData(data))
-  //     .catch((error) => console.log(error));
-  // }, []);
+  ;
 
   return (
     <div className="app_container">
-
-
-
+      <Navbar/>
+      <Homepage />
+      <Footer/>
       
-      <Homepage/>
-   
-      
-      
-
     </div>
   );
 }

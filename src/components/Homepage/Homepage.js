@@ -24,7 +24,7 @@ export default function Homepage() {
     const [date, setdate] = useState([]);
     let d = new Date();
     let timex = d.getHours();
-    var time = d.getHours() + ":" + d.getMinutes();
+    
     // Api fetch function
     const fetchData = async () => {
         var city = document.getElementById('city').value;
