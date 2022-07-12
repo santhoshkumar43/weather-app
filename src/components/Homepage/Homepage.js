@@ -7,7 +7,7 @@ export default function Homepage() {
     const interval = setInterval(() => {
         const now = new Date();
         const dateTime = now.getHours() + ":" + now.getMinutes();
-        console.log(dateTime)
+        
         setdate(dateTime)
     }, 1000);
     // Hooks 
@@ -24,7 +24,7 @@ export default function Homepage() {
     const [date, setdate] = useState([]);
     let d = new Date();
     let timex = d.getHours();
-    
+
     // Api fetch function
     const fetchData = async () => {
         var city = document.getElementById('city').value;
@@ -32,6 +32,7 @@ export default function Homepage() {
         const data = await response.json();
         const url = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         const country = `https://countryflagsapi.com/png/${data.sys.country}`;
+        console.log(data)
         setcontimg(country);
         setimg(url);
         setdat(data.main.temp - 273.15);
@@ -41,10 +42,12 @@ export default function Homepage() {
         sethumidity(data.main.humidity);
         setArea(data.name);
         setdescription(data.weather[0].description);
+        console.log(new Date()); // minus 
+        console.log(new Date(data.dt * 1000 + (data.timezone * 1000))); // plus
     };
-    window.onload = function() {
+    window.onload = function () {
         fetchData();
-      };
+    };
 
 
     return (
@@ -78,9 +81,7 @@ export default function Homepage() {
                     <input id='city' placeholder='Enter the city' />
                     <button onClick={fetchData} >Search</button>
                 </div>
-
-
-
+                
                 <div className="bottom">
                     <div>
                         <p>Wind</p>
