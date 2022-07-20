@@ -5,8 +5,8 @@
     
     padding: 12px;
     background-image: linear-gradient(0deg, rgb(155, 226, 250), rgb(62, 192, 252));
-    box-shadow: 10px 0px 15px gray;
-   
+    box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.399);
+    backdrop-filter: blur(50px);
     
 }
 .nav-bar img{

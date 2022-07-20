@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import './Homepage.css';
 import { useState } from 'react';
+import Forcast from "../Forcast/Forcast";
 
 export default function Homepage() {
     // Time
     const interval = setInterval(() => {
         const now = new Date();
         const dateTime = now.getHours() + ":" + now.getMinutes();
-        
+
         setdate(dateTime)
     }, 1000);
     // Hooks 
@@ -22,18 +23,23 @@ export default function Homepage() {
     const [contimg, setcontimg] = useState([]);
     const [img, setimg] = useState([]);
     const [date, setdate] = useState([]);
+    const [forcast, setforcast ] = useState([]);
+    
     let d = new Date();
     let timex = d.getHours();
 
     // Api fetch function
+
     const fetchData = async () => {
         var city = document.getElementById('city').value;
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city == "" ? "kolkata" : city}&appid=418980fd544d800ef66538c1f8140ef6`);
         const data = await response.json();
         const url = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         const country = `https://countryflagsapi.com/png/${data.sys.country}`;
-        console.log(data)
+        setforcast(data.list)
         setcontimg(country);
+        console.log(data)
+
         setimg(url);
         setdat(data.main.temp - 273.15);
         setfeel(data.main.feels_like - 273.15);
@@ -42,8 +48,8 @@ export default function Homepage() {
         sethumidity(data.main.humidity);
         setArea(data.name);
         setdescription(data.weather[0].description);
-        console.log(new Date()); // minus 
-        console.log(new Date(data.dt * 1000 + (data.timezone * 1000))); // plus
+        
+        
     };
     window.onload = function () {
         fetchData();
@@ -62,7 +68,7 @@ export default function Homepage() {
                         <p>{date}</p>
                     </div>
                     <div className="middle-temp">
-                        <p>{Math.floor(dat)}<sup>o</sup>C</p>
+                        <p>{Math.floor(dat)}<sup>o</sup><span style={{fontWeight:"normal"}}>c</span></p>
                         <div>
                             <span>{climate}</span><br />
                             <span>feels like {Math.floor(feel)}</span>
@@ -81,7 +87,7 @@ export default function Homepage() {
                     <input id='city' placeholder='Enter the city' />
                     <button onClick={fetchData} >Search</button>
                 </div>
-                
+
                 <div className="bottom">
                     <div>
                         <p>Wind</p>
@@ -107,6 +113,14 @@ export default function Homepage() {
 
                     </div>
 
+                </div>
+                <div>
+                    <Forcast
+
+                    temp =""
+                    
+                    />
+                    
                 </div>
 
 
