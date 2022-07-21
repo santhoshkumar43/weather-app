@@ -120,7 +120,7 @@ export default function Homepage() {
 
                                 }).slice(0, 5)
                                     .map((item, index) => (
-                                        <div onClick={() => onSearch(item.name)} key={item.id}>  {item.name}  </div>
+                                        <div onClick={() => onSearch(item.name)} key={item.id}>  {item.name}, {item.country}  </div>
                                     ))
 
                             }
