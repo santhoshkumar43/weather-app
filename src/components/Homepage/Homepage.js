@@ -106,24 +106,26 @@ export default function Homepage() {
                 <div className="in">
                     <div className="in-out">
                         <input value={value} onChange={onChange} />
-                        <button onClick={() => onSearch(value)}><img src={search}/></button>
+                        <button onClick={() => onSearch(value)}><img src={search} /></button>
 
                     </div>
-                    <div className="dataSearch">
-                        {
-                            data.filter(item => {
-                                const searchTerm = value.toLowerCase();
+                    <div className="in-2">
+                        <div className="dataSearch">
+                            {
+                                data.filter(item => {
+                                    const searchTerm = value.toLowerCase();
 
-                                const name = item.name.toLowerCase();
-                                if (searchTerm.length > 2) { return searchTerm && name.startsWith(searchTerm) && name !== searchTerm; }
+                                    const name = item.name.toLowerCase();
+                                    if (searchTerm.length > 2) { return searchTerm && name.startsWith(searchTerm) && name !== searchTerm; }
 
-                            }).slice(0, 5)
-                                .map((item, index) => (
-                                    <div onClick={() => onSearch(item.name)} key={item.id}>  {item.name}  </div>
-                                ))
+                                }).slice(0, 5)
+                                    .map((item, index) => (
+                                        <div onClick={() => onSearch(item.name)} key={item.id}>  {item.name}  </div>
+                                    ))
 
-                        }
+                            }
 
+                        </div>
                     </div>
                 </div>
 
