@@ -3,7 +3,7 @@
     background-image: linear-gradient(0deg, rgb(158, 158, 158), rgb(82, 97, 105));
     background-color: rgb(211, 211, 211);
     color: white;
-    backdrop-filter: blur(100px);
+    
 
 }
 
@@ -12,6 +12,21 @@
     flex-direction: column;
 
     align-items: center;
+}
+.brand button{
+    color: white;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 2px solid red;
+    background-color: red;
+    height: 50px;
+    width: 200px;
+     
+}
+.brand button:hover{
+    cursor: pointer;
+    background-color: transparent;
+    transform: scale(1.15);
 }
 
 .footer-first {
@@ -32,6 +47,15 @@
 .footer-first img {
     text-align: center;
     height: 60px;
+    
+    
+}
+.footer_api_details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
 }
 .footer-first ul li {
     list-style: none;

@@ -43,6 +43,7 @@ export default function Homepage() {
         const data = await response.json();
         const url = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         const country = `https://countryflagsapi.com/png/${data.sys.country}`;
+        console.log(data)
         setforcast(data.list)
         setcontimg(country);
         setimg(url);

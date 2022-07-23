@@ -13,7 +13,8 @@ export default function Footer() {
                 <div className="brand">
                     <img src={weather} />
                     <h2>Weather App</h2>
-                    <p><strong>Email:</strong> pittasanthoshkumar@gmail.com</p>
+                    <p><strong>SANTHOSH KUMAR P</strong> </p>
+                    <a href="mailto:pittasanthoshkumar4321@gmail.com"><button >Contact me</button></a>
 
                 </div>
                 <div>
@@ -25,9 +26,9 @@ export default function Footer() {
                         <li><a href="https://santhosh-weather-app.netlify.app/">Weather App</a></li>
                     </ul>
                 </div>
-                <div>
+                <div className="footer_api_details">
                     <h2>API provider</h2>
-                    <img src="https://openweathermap.org/themes/openweathermap/assets/img/mobile_app/android-app-top-banner.png" />
+                    <a href="https://openweathermap.org/"><img  src="https://openweathermap.org/themes/openweathermap/assets/img/mobile_app/android-app-top-banner.png" /></a>
                     <p> <b>Open Weather API</b><br />
                         <strong>Link:</strong> <a href="https://openweathermap.org/">https://openweathermap.org/</a></p>
                 </div>
