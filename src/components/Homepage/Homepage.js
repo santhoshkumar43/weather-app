@@ -7,11 +7,12 @@ import search from "../../images/search.png"
 
 export default function Homepage() {
     // Time
+    const [date, setdate] = useState([]);
     const interval = setInterval(() => {
         const now = new Date();
         const dateTime = now.getHours() + ":" + now.getMinutes();
 
-        setdate(dateTime)
+        setdate(dateTime);
     }, 1000);
     // Hooks 
 
@@ -24,24 +25,26 @@ export default function Homepage() {
     const [description, setdescription] = useState([]);
     const [contimg, setcontimg] = useState([]);
     const [img, setimg] = useState([]);
-    const [date, setdate] = useState([]);
-    const [forcast, setforcast] = useState([]);
 
+    const [forcast, setforcast] = useState([]);
     let d = new Date();
     let timex = d.getHours();
+    
+
+    const [fore, setfore] = useState([]);
+
+
 
     // Api fetch function
 
     const fetchData = async () => {
-
+        // weather of current day
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${value == "" ? "kolkata" : value}&appid=418980fd544d800ef66538c1f8140ef6`);
         const data = await response.json();
         const url = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
         const country = `https://countryflagsapi.com/png/${data.sys.country}`;
         setforcast(data.list)
         setcontimg(country);
-        console.log(data)
-
         setimg(url);
         setdat(data.main.temp - 273.15);
         setfeel(data.main.feels_like - 273.15);
@@ -52,9 +55,19 @@ export default function Homepage() {
         setdescription(data.weather[0].description);
 
 
+        // forcast
+        const result = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${value == "" ? "kolkata" : value}&appid=418980fd544d800ef66538c1f8140ef6`)
+        const newData = await result.json();
+        
+        setfore(newData.list)
+
+
+
+
     };
     window.onload = function () {
         fetchData();
+
     };
 
     const [value, setvalue] = useState('');
@@ -65,14 +78,14 @@ export default function Homepage() {
         // this for to call fetchdata only if we click search 
         if (value.length == searchTerm.length) {
             fetchData();
-            console.log(value)
+
 
         }
 
 
         setvalue(searchTerm);
         //api
-        console.log("search", searchTerm);
+
     }
 
 
@@ -80,7 +93,7 @@ export default function Homepage() {
 
 
         <div className="Homepage_container">
-            <div style={{ backgroundImage: timex < 17 ? "url('https://s3.envato.com/files/9afcdb91-eea8-4b3a-8571-5b4bfc59bdc9/inline_image_preview.jpg')" : "url('https://wallpaperaccess.com/full/1363028.jpg')" }} className="main">
+            <div style={{ backgroundImage: timex < 18 ? "url('https://s3.envato.com/files/9afcdb91-eea8-4b3a-8571-5b4bfc59bdc9/inline_image_preview.jpg')" : "url('https://wallpaperaccess.com/full/1363028.jpg')" }} className="main">
                 <h1 >Weather App</h1>
                 <div className="display">
                     <div className="top">
@@ -105,8 +118,8 @@ export default function Homepage() {
 
                 <div className="in">
                     <div className="in-out">
-                        <input value={value} onChange={onChange} />
-                        <button onClick={() => onSearch(value)}><img src={search} /></button>
+                        <input value={value} onChange={onChange} placeholder="Enter your City" />
+                        <button onClick={() => onSearch(value)}><img src={search} tabindex="-1"/></button>
 
                     </div>
                     <div className="in-2">
@@ -155,12 +168,17 @@ export default function Homepage() {
                     </div>
 
                 </div>
-                <div>
-                    <Forcast
+                <div className="forecast">
+                    {
+                        fore.map((cast) => {
+                            return (
 
-                        temp=""
+                                <Forcast date={cast.dt_txt.slice(0,11)} time={cast.dt_txt.slice(10,16)} temp2={Math.floor(cast.main.temp-273.15)} weather={cast.weather[0].main} image={cast.weather[0].icon}/>
+                            )
 
-                    />
+
+                        })
+                    }
 
                 </div>
 
