@@ -169,12 +169,17 @@ export default function Homepage() {
                     </div>
 
                 </div>
+                <h1>Weather Forcast</h1>
                 <div className="forecast">
                     {
-                        fore.map((cast) => {
+                        fore.filter(cast=>{
+                            const time =cast.dt_txt.slice(10,13)
+                            if(time == 9 || time == 21){return cast}
+                        })
+                        .map((cast,index) => {
                             return (
 
-                                <Forcast date={cast.dt_txt.slice(0,11)} time={cast.dt_txt.slice(10,16)} temp2={Math.floor(cast.main.temp-273.15)} weather={cast.weather[0].main} image={cast.weather[0].icon}/>
+                                <Forcast key={index} date={cast.dt_txt.slice(0,11)} time={cast.dt_txt.slice(10,16)} temp2={Math.floor(cast.main.temp-273.15)} weather={cast.weather[0].main} image={cast.weather[0].icon}/>
                             )
 
 

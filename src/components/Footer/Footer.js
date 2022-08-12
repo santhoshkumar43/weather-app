@@ -13,7 +13,7 @@ export default function Footer() {
                 <div className="brand">
                     <img src={weather} />
                     <h2>Weather App</h2>
-                    <p><strong>SANTHOSH KUMAR P</strong> </p>
+                    <p><strong>SANTHOSH KUMAR PITTA</strong> </p>
                     <a href="mailto:pittasanthoshkumar4321@gmail.com"><button >Contact me</button></a>
 
                 </div>
@@ -48,7 +48,6 @@ export default function Footer() {
                     </div>
 
                 </div>
-
 
             </div>
 
